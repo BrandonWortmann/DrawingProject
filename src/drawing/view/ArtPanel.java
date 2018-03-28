@@ -89,13 +89,13 @@ public class ArtPanel extends JPanel
 		scaleSlider.setPaintTicks(true);
 		scaleSlider.setPaintLabels(true);
 		
-		scaleSlider.setLabelTable(scaleLabels);
-		scaleSlider.setOrientation(JSlider.VERTICAL);
-		scaleSlider.setSnapToTicks(true);
-		scaleSlider.setMajorTickSpacing(3);
-		scaleSlider.setMinorTickSpacing(1);
-		scaleSlider.setPaintTicks(true);
-		scaleSlider.setPaintLabels(true);
+		edgeSlider.setLabelTable(edgeLabels);
+		edgeSlider.setOrientation(JSlider.VERTICAL);
+		edgeSlider.setSnapToTicks(true);
+		edgeSlider.setMajorTickSpacing(3);
+		edgeSlider.setMinorTickSpacing(1);
+		edgeSlider.setPaintTicks(true);
+		edgeSlider.setPaintLabels(true);
 		
 		
 		
@@ -114,8 +114,8 @@ public class ArtPanel extends JPanel
 		buttonPanel.add(ellipseButton);
 		buttonPanel.add(polygonButton);
 		buttonPanel.add(clearButton);
-		buttonPanel.add(saveButon);
-		butonPanel.add(colorButton);
+		buttonPanel.add(saveButton);
+		buttonPanel.add(colorButton);
 		
 		sliderPanel.setPreferredSize(new Dimension (250,450));
 		sliderPanel.add(scaleSlider);
