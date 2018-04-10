@@ -65,6 +65,11 @@ public class ArtPanel extends JPanel
 		saveButton = new JButton("save image");
 		colorButton = new JButton("change color");
 		
+		setupSliders();
+		setupPanel();
+		setupLayout();
+		setupListeners();
+		
 		
 		
 	}
@@ -123,6 +128,10 @@ public class ArtPanel extends JPanel
 		
 		this.add(buttonPanel);
 		this.add(sliderPanel);
+		
+	}
+	private void setupLayout()
+	{
 		
 	}
 	
@@ -235,7 +244,7 @@ public class ArtPanel extends JPanel
 		
 		clearButton.addActionListener(click -> canvas.clear());
 		saveButton.addActionListener(click -> canvas.save());
-		colorButton.addActionListener(click -> canvas.changeBackgraound());
+		colorButton.addActionListener(click -> canvas.changeBackground());
 		scaleSlider.addChangeListener(new ChangeListener()
 		{
 			@Override
