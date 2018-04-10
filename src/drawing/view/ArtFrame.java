@@ -1,18 +1,24 @@
 package drawing.view;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import drawing.controller.DrawingController;
 
 public class ArtFrame extends JFrame
 {
-	private DrawingController appController;
-	private ArtPanel artPanel;
+	private ArtPanel appPanel;
 	
-	public ArtFrame(DrawingController appController)
+	public ArtFrame(DrawingController app)
 	{
 		super();
-		this.appController = appController;
+		appPanel = new ArtPanel(app);
+	}
+	
+	private void setupFrame()
+	{
+		this.setSize(1200,700);
+		this.setContentPane(appPanel);
+		this.setTitle("Creating modern art in Java");
+		this.setVisible(true);
 	}
 
 }
