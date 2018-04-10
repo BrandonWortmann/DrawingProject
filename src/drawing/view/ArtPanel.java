@@ -232,6 +232,33 @@ public class ArtPanel extends JPanel
 			}
 			
 		});
+		
+		clearButton.addActionListener(click -> canvas.clear());
+		saveButton.addActionListener(click -> canvas.save());
+		colorButton.addActionListener(click -> canvas.changeBackgraound());
+		scaleSlider.addChangeListener(new ChangeListener()
+		{
+			@Override
+			public void stateChanged(ChangeEvent e)
+			{
+				if(!scaleSlider.getValueIsAdjusting())
+				{
+					currentScale = scaleSlider.getValue();
+				}
+			}
+		});
+		
+		edgeSlider.addChangeListener(new ChangeListener()
+		{
+			@Override
+			public void stateChanged(ChangeEvent e)
+			{
+				if(!edgeSlider.getValueIsAdjusting())
+				{
+					currentScale = edgeSlider.getValue();
+				}
+			}
+		});
 	}
 
 }
