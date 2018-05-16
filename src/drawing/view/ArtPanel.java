@@ -7,6 +7,9 @@ import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.awt.geom.Ellipse2D;
 import java.util.Hashtable;
 import javax.swing.*;
@@ -54,7 +57,9 @@ public class ArtPanel extends JPanel
 		edgeSlider = new JSlider(MINIMUM_EDGE, MAXIMUM_EDGE);
 		
 		canvas = new ShapeCanvas(app);
+		
 		sliderPanel = new JPanel();
+		
 		buttonPanel = new JPanel();
 		
 		triangleButton = new JButton("add triangle");
@@ -132,6 +137,13 @@ public class ArtPanel extends JPanel
 	}
 	private void setupLayout()
 	{
+		appLayout.putConstraint(SpringLayout.NORTH, canvas, 50, SpringLayout.NORTH, this);
+		appLayout.putConstraint(SpringLayout.WEST, canvas, 50, SpringLayout.WEST, this);
+		appLayout.putConstraint(SpringLayout.NORTH, sliderPanel, 0, SpringLayout.NORTH, canvas);
+		appLayout.putConstraint(SpringLayout.WEST, sliderPanel, 20, SpringLayout.EAST, buttonPanel);
+		appLayout.putConstraint(SpringLayout.NORTH, buttonPanel, 0, SpringLayout.NORTH, canvas);
+		appLayout.putConstraint(SpringLayout.WEST, buttonPanel, 40, SpringLayout.EAST, canvas);
+		
 		
 	}
 	
@@ -241,6 +253,51 @@ public class ArtPanel extends JPanel
 			}
 			
 		});
+		canvas.addMouseMotionListener(new MouseMotionListener()
+		{
+			public void mouseDragged(MouseEvent drag)
+			{
+				int x = drag.getX();
+				int y = drag.getY();
+				canvas.drawOnCanvas(x,y, currentEdgeCount);
+			}
+			public void mouseMoved(MouseEvent move)
+			{
+				
+			}
+		});
+		
+		canvas.addMouseListener(new MouseListener()
+		{
+
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{}
+
+			@Override
+			public void mousePressed(MouseEvent e)
+			{}
+
+			@Override
+			public void mouseReleased(MouseEvent e)
+			{
+				canvas.resetPoint();	
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e)
+			{}
+
+			@Override
+			public void mouseExited(MouseEvent e)
+			{
+				canvas.resetPoint();
+				
+			}
+			
+		});
+		
+		
 		
 		clearButton.addActionListener(click -> canvas.clear());
 		saveButton.addActionListener(click -> canvas.save());
@@ -264,7 +321,7 @@ public class ArtPanel extends JPanel
 			{
 				if(!edgeSlider.getValueIsAdjusting())
 				{
-					currentScale = edgeSlider.getValue();
+					currentEdgeCount = edgeSlider.getValue();
 				}
 			}
 		});
